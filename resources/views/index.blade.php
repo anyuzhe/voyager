@@ -1,5 +1,5 @@
 @extends('voyager::master')
-
+@section('page_title','控制台')
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ voyager_asset('css/ga-embed.css') }}">
 @stop
@@ -15,7 +15,7 @@
                 <div id="embed-api-auth-container"></div>
             @else
                 <p style="border-radius:4px; padding:20px; background:#fff; margin:0; color:#999; text-align:center;">
-                    To view analytics you'll need to get a google analytics client id and add it to your settings for the key <code>google_analytics_client_id</code>. Get your key in your Google developer console:
+                    要查看分析， 你需要得到一个谷歌分析客户端ID并把它设置到你的key <code>google_analytics_client_id</code>. 获取您的谷歌开发控制台中的密钥:
                     <a href="https://console.developers.google.com" target="_blank">https://console.developers.google.com</a>
                 </p>
             @endif

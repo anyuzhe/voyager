@@ -170,17 +170,17 @@ return [
     'dashboard' => [
         // Add custom list items to navbar's dropdown
         'navbar_items' => [
-            'Profile' => [
+            '个人中心' => [
                 'route'         => 'voyager.profile',
                 'classes'       => 'class-full-of-rum',
                 'icon_class'    => 'voyager-person',
             ],
-            'Home' => [
+            '主页' => [
                 'route'         => '/',
                 'icon_class'    => 'voyager-home',
                 'target_blank'  => true,
             ],
-            'Logout' => [
+            '退出' => [
                 'route'      => 'voyager.logout',
                 'icon_class' => 'voyager-power',
             ],
@@ -226,5 +226,27 @@ return [
     'additional_js' => [
         //'js/custom.js',
     ],
+    //导航面包屑和权限的翻译
+    'voyager_zh'=>[
+        'roles'=>'角色',
+        'users'=>'用户',
+        'media'=>'媒体',
+        'posts'=>'文章',
+        'pages'=>'页面',
+        'categories'=>'分类',
+        'menus'=>'菜单',
+        'database'=>'数据库',
+        'settings'=>'设置',
+        'create'=>'创建',
+        'edit'=>'编辑',
+        'builder'=>'构建',
+        'bread'=>'BREAD',
+        'profile'=>'个人信息',
+        'browse'=>'浏览',
+        'add'=>'添加',
+        'delete'=>'删除',
+        'read'=>'阅读',
+        'admin'=>'后台'
+    ]
 
 ];

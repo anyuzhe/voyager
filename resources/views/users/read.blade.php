@@ -1,8 +1,8 @@
 @extends('voyager::master')
-
+@section('page_title','查看'.$dataType->display_name_singular)
 @section('page_header')
     <h1 class="page-title">
-        <i class="{{ $dataType->icon }}"></i> Viewing {{ ucfirst($dataType->display_name_singular) }}
+        <i class="{{ $dataType->icon }}"></i> 查看{{ ucfirst($dataType->display_name_singular) }}
     </h1>
 @stop
 
@@ -39,7 +39,7 @@
                     @endforeach
 
                     <div class="panel-heading" style="border-bottom:0;">
-                        <h3 class="panel-title">User Role</h3>
+                        <h3 class="panel-title">用户角色</h3>
                     </div>
 
                     <div class="panel-body" style="padding-top:0;">

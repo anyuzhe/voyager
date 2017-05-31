@@ -1,13 +1,13 @@
 @extends('voyager::master')
 
-@section('page_title','All '.$dataType->display_name_plural)
+@section('page_title',$dataType->display_name_plural)
 
 @section('page_header')
     <h1 class="page-title">
         <i class="voyager-news"></i> {{ $dataType->display_name_plural }}
         @if (Voyager::can('add_'.$dataType->name))
             <a href="{{ route('voyager.'.$dataType->slug.'.create') }}" class="btn btn-success">
-                <i class="voyager-plus"></i> Add New
+                <i class="voyager-plus"></i> 添加{{ $dataType->display_name_singular }}
             </a>
         @endif
     </h1>
@@ -27,7 +27,7 @@
                                     @foreach($dataType->browseRows as $row)
                                     <th>{{ $row->display_name }}</th>
                                     @endforeach
-                                    <th class="actions">Actions</th>
+                                    <th class="actions">操作</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,24 +44,24 @@
                                                     '_field_trans' => get_field_translations($data, $row->field)
                                                 ])
                                             @endif
-                                            <span>{{ $data->{$row->field} }}</span>
+                                            <span>{{ Voyager::voyagerPostZh($data->{$row->field},$row->field) }}</span>
                                         @endif
                                     </td>
                                     @endforeach
                                     <td class="no-sort no-click">
                                         @if (Voyager::can('delete_'.$dataType->name))
                                             <div class="btn-sm btn-danger pull-right delete" data-id="{{ $data->id }}">
-                                                <i class="voyager-trash"></i> Delete
+                                                <i class="voyager-trash"></i> 删除
                                             </div>
                                         @endif
                                         @if (Voyager::can('edit_'.$dataType->name))
                                             <a href="{{ route('voyager.'.$dataType->slug.'.edit', $data->id) }}" class="btn-sm btn-primary pull-right edit">
-                                                <i class="voyager-edit"></i> Edit
+                                                <i class="voyager-edit"></i> 编辑
                                             </a>
                                         @endif
                                         @if (Voyager::can('read_'.$dataType->name))
                                             <a href="{{ route('voyager.'.$dataType->slug.'.show', $data->id) }}" class="btn-sm btn-warning pull-right">
-                                                <i class="voyager-eye"></i> View
+                                                <i class="voyager-eye"></i> 查看
                                             </a>
                                         @endif
                                     </td>
@@ -71,7 +71,7 @@
                         </table>
                         @if (isset($dataType->server_side) && $dataType->server_side)
                             <div class="pull-left">
-                                <div role="status" class="show-res" aria-live="polite">Showing {{ $dataTypeContent->firstItem() }} to {{ $dataTypeContent->lastItem() }} of {{ $dataTypeContent->total() }} entries</div>
+                                <div role="status" class="show-res" aria-live="polite">从 {{ $dataTypeContent->firstItem() }} 到 {{ $dataTypeContent->lastItem() }} /共 {{ $dataTypeContent->total() }} 条数据</div>
                             </div>
                             <div class="pull-right">
                                 {{ $dataTypeContent->links() }}
@@ -91,16 +91,16 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <h4 class="modal-title">
-                        <i class="voyager-trash"></i> Are you sure you want to delete this {{ $dataType->display_name_singular }}?
+                        <i class="voyager-trash"></i> 你确定删除这篇{{ $dataType->display_name_singular }}?
                     </h4>
                 </div>
                 <div class="modal-footer">
                     <form action="{{ route('voyager.'.$dataType->slug.'.destroy', ['id' => '__id']) }}" id="delete_form" method="POST">
                         {{ method_field("DELETE") }}
                         {{ csrf_field() }}
-                        <input type="submit" class="btn btn-danger pull-right delete-confirm" value="Yes, Delete This {{ $dataType->display_name_singular }}">
+                        <input type="submit" class="btn btn-danger pull-right delete-confirm" value="确定删除这篇{{ $dataType->display_name_singular }}">
                     </form>
-                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">关闭</button>
                 </div>
             </div>
         </div>
@@ -112,7 +112,15 @@
     <script>
         $(document).ready(function () {
             @if (!$dataType->server_side)
-                $('#dataTable').DataTable({ "order": [] });
+                $('#dataTable').DataTable({
+                    "order": [],
+                    "oLanguage":{
+                        "sInfo":"从 _START_  到  _END_  /共 _TOTAL_ 条数据",
+                        "sLengthMenu":"每页显示 _MENU_ 条记录",
+                        "sSearch":'搜索',
+                        "oPaginate":{"sFirst":'首页',"sPrevious":"上一页","sNext":"下一页","sLast":"尾页"}
+                    }
+                });
             @endif
             @if ($isModelTranslatable)
                 $('.side-body').multilingual();
