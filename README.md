@@ -15,6 +15,9 @@ Made with ❤️ by [The Control Group](https://www.thecontrolgroup.com)
 ![Voyager-zh Screenshot](http://xusenlin.com/usr/uploads/2017/05/3411382474.jpg)
 
 站点 & 文档: https://the-control-group.github.io/voyager/
+![Voyager Screenshot](https://laravelvoyager.com/images/screenshot.png)
+
+Website & Documentation: https://laravelvoyager.com
 
 视频演示: https://devdojo.com/series/laravel-voyager-010/
 
@@ -24,8 +27,8 @@ Made with ❤️ by [The Control Group](https://www.thecontrolgroup.com)
 
 Voyager最近的视频: https://larachat.co/live
 
-<hr>
-Voyager 是一个非常棒的后台管理，但是原作者并没有打算将他翻译为中文，这个是由我翻译的中文，可能有的地方翻译不准确（英文太渣--），希望大家加入进来给我提意见，如果你喜欢，欢迎star.
+Voyager 是一个非常棒的后台管理，但是原作者并没有打算将他翻译为中文，这个是由我翻译的中文，
+可能有的地方翻译不准确（英文太渣--），希望大家加入进来给我提意见，如果你喜欢，欢迎star.
 
 #如何安装
 

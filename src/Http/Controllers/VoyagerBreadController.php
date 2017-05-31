@@ -45,7 +45,10 @@ class VoyagerBreadController extends Controller
             if ($model->timestamps) {
                 $dataTypeContent = call_user_func([$model->with($relationships)->latest(), $getter]);
             } else {
-                $dataTypeContent = call_user_func([$model->with($relationships)->orderBy('id', 'DESC'), $getter]);
+                $dataTypeContent = call_user_func([
+                    $model->with($relationships)->orderBy($model->getKeyName(), 'DESC'),
+                    $getter,
+                ]);
             }
 
             //Replace relationships' keys for labels and create READ links if a slug is provided.
@@ -163,7 +166,7 @@ class VoyagerBreadController extends Controller
         Voyager::canOrFail('edit_'.$dataType->name);
 
         //Validate fields with ajax
-        $val = $this->validateBread($request->all(), $dataType->addRows);
+        $val = $this->validateBread($request->all(), $dataType->editRows);
 
         if ($val->fails()) {
             return response()->json(['errors' => $val->messages()]);

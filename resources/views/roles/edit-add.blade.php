@@ -63,7 +63,7 @@
                                     $role_permissions = (isset($dataTypeContent)) ? $dataTypeContent->permissions->pluck('key')->toArray() : [];
                                     $voyager_zh = config('voyager.voyager_zh');
                                 ?>
-                                @foreach(TCG\Voyager\Models\Permission::all()->groupBy('table_name') as $table => $permission)
+                                @foreach(TCG\Voyager\Models\Permission::all()->groupBy('table_name')->sortBy('table_name') as $table => $permission)
                                     <li>
                                         <input type="checkbox" id="{{$table}}" class="permission-group">
                                         <label for="{{$table}}"><strong>{{ @$voyager_zh[$table]?:'' }}</strong></label>

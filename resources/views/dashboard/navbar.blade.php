@@ -18,7 +18,8 @@
                     </li>
                 @endif
                 <?php
-                    $breadcrumb_url = asset('');
+                    #$breadcrumb_url = asset('');
+                    $breadcrumb_url = url('');
                     $voyager_zh = config('voyager.voyager_zh');
                 ?>
                 @for($i = 1; $i <= count(Request::segments()); $i++)
